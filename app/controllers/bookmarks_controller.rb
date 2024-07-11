@@ -10,8 +10,9 @@ class BookmarksController < ApplicationController
     @bookmark.list = @list
 
     if @bookmark.save
-      redirect_to list_path(@list)
+      redirect_to list_path(@list), notice: 'Bookmark was successfully created.'
     else
+      Rails.logger.debug @bookmark.errors.full_messages
       render :new
     end
   end
